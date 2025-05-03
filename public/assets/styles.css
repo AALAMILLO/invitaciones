@@ -1,0 +1,243 @@
+/* === ESTILO GENERAL === */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: url("/assets/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #333;
+  overflow-x: hidden;
+}
+
+main {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #8e44ad;
+  font-weight: 600;
+}
+
+p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+audio {
+  display: block;
+  margin: 20px auto;
+}
+
+img, iframe {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img:hover, iframe:hover {
+  transform: scale(1.02);
+}
+
+/* === CUENTA REGRESIVA === */
+#countdown {
+  text-align: center;
+  margin-top: 40px;
+}
+
+#countdown h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #8e44ad;
+}
+
+.timer {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #444;
+}
+
+/* === PANTALLA DE SOBRE === */
+#invitation-cover {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #fce4ec, #fff1f9);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.cover-inner {
+  text-align: center;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.cover-inner img {
+  width: 150px;
+  margin-bottom: 20px;
+  animation: bounce 2s infinite;
+}
+
+#invitation-cover h1 {
+  font-size: 2.2rem;
+  margin: 0;
+  color: #8e44ad;
+}
+
+#invitation-cover p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+#invitation-cover.fade-out {
+  opacity: 0;
+  pointer-events: none;
+  animation: openEnvelope 1s ease forwards;
+}
+
+/* === ANIMACIONES PERSONALIZADAS === */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes openEnvelope {
+  0% { transform: scale(1) rotateX(0); opacity: 1; }
+  100% { transform: scale(0.95) rotateX(90deg); opacity: 0; }
+}
+
+/* === SECCIONES A PANTALLA COMPLETA === */
+.full-screen-section {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f9f1f7, #fce4ec);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.full-screen-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.full-screen-section.confirmar {
+  background: url("/assets/angela1.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.section-content {
+  z-index: 2;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.section-content h2 {
+  font-size: 2.5rem;
+  color: #8e44ad;
+  margin-bottom: 1rem;
+}
+
+.section-content .subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.section-content .place {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #e6b3cc;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #cc88aa;
+  transform: scale(1.05);
+}
+
+/* === AOS OVERWRITE === */
+[data-aos] {
+  opacity: 0;
+  transition-property: opacity, transform;
+}
+
+[data-aos].aos-animate {
+  opacity: 1;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+  .cover-inner img {
+    width: 100px;
+  }
+  .timer {
+    font-size: 1.5rem;
+  }
+
+  .section-content h2 {
+    font-size: 2rem;
+  }
+
+  .section-content .subtitle,
+  .section-content .place {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+.image-section {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XV de Ángela Valeria</title>
+    <link rel="stylesheet" href="/assets/aos.css" />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <script src="/assets/aos.js" defer></script>
+  </head>
+  <body>
+    <div id="invitation-cover">
+      <div class="cover-inner">
+        <img src="/assets/sobre.png" alt="Abrir invitación" />
+        <h1>XV de Ángela Valeria</h1>
+        <p>Toca dos veces para abrir</p>
+      </div>
+    </div>
+
+    <main>
+      <section data-aos="fade-up">
+        <h1 data-aos="zoom-in">XV de Ángela Valeria</h1>
+        <p data-aos="fade-right">24 de Noviembre de 2025</p>
+        <p data-aos="fade-left">Granja El Encino, CDMX</p>
+        <audio src="/assets/musica.mp3" autoplay loop controls data-aos="flip-up"></audio>
+      </section>
+
+      <section class="image-section" data-aos="fade-up">
+        <img src="/assets/angela1.jpg" data-aos="flip-left" data-aos-delay="100" />
+        <img src="/assets/angela2.jpg" data-aos="flip-right" data-aos-delay="300" />
+      </section>
+
+      <section class="full-screen-section" data-aos="fade-up">
+        <div class="section-content">
+          <h2>Ceremonia Religiosa</h2>
+          <p class="subtitle">La cita es a las 8:00PM</p>
+          <p class="place">Parroquia Santa María</p>
+          <img src="/assets/iglesia.jpg" alt="Ceremonia" class="location-image" />
+          <a href="https://maps.google.com/?q=Parroquia+Santa+María" class="cta-button" target="_blank">
+            📍 Cómo llegar
+          </a>
+        </div>
+      </section>
+
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m12!1m8!1m3!1d14013.378748256486!2d-106.1463808!3d28.5894346!3m2!1i1024!2i768!4f13.1!2m1!1sGranja%20El%20Encino!5e0!3m2!1ses-419!2smx!4v1746234466144!5m2!1ses-419!2smx"
+        width="100%"
+        height="300"
+        style="border:0"
+        allowfullscreen
+        loading="lazy"
+        data-aos="fade-up"
+      ></iframe>
+
+      <section id="countdown" data-aos="zoom-in">
+        <h2>Faltan:</h2>
+        <div class="timer">
+          <span id="days">00</span>d :
+          <span id="hours">00</span>h :
+          <span id="minutes">00</span>m :
+          <span id="seconds">00</span>s
+        </div>
+      </section>
+
+      <section class="full-screen-section confirmar" data-aos="fade-up">
+        <div class="section-content">
+          <h2>Confirma tu asistencia</h2>
+          <p class="subtitle">¡Nos encantará contar contigo!</p>
+          <a href="https://wa.me/526672382992?text=Confirmo+mi+asistencia+a+la+XV+de+Ángela+Valeria" class="cta-button" data-aos="zoom-in">
+            Confirmar por WhatsApp
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        AOS.init({
+          once: false,
+          mirror: true,
+          duration: 1000,
+          easing: 'ease-in-out'
+        });
+
+        const cover = document.getElementById("invitation-cover");
+        const main = document.querySelector("main");
+        let lastTap = 0;
+
+        const openInvitation = () => {
+          cover.classList.add("fade-out");
+          main.style.display = "block";
+          AOS.refresh();
+        };
+
+        const handleInteraction = () => {
+          const now = Date.now();
+          if (now - lastTap < 500) {
+            openInvitation();
+          }
+          lastTap = now;
+        };
+
+        cover.addEventListener("click", handleInteraction);
+        cover.addEventListener("touchend", handleInteraction);
+
+        main.style.display = "none";
+
+        const countdown = () => {
+          const eventDate = new Date("2025-11-24T00:00:00").getTime();
+          const now = new Date().getTime();
+          const distance = eventDate - now;
+
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          document.getElementById("days").textContent = String(days).padStart(2, '0');
+          document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+          document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+          document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+        };
+
+        countdown();
+        setInterval(countdown, 1000);
+      });
+    </script>
+  </body>
+</html>
